@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>bear翻译官</title>
+<!-- 引入 Bootstrap -->
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <!-- 导航栏 -->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        <a class="navbar-brand" href="#">BEAR翻译官</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+        <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">about
+                <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#">介绍</a></li>
+                <li>
+                    <a href="#">声明</a></li>
+                <li>
+                    <a href="#">源码</a></li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">作者</a></li></li>
+        </ul>
+    </div>
+</nav>
+    <!-- 内容 -->
+<div style="width:80%;text-align: center;margin:0 auto;">
+    <!-- 输入部分 -->
+<div style="">
+        <form action="/search-post" method="post">
+                <div class="form-group">
+                  {% csrf_token %}<textarea class="form-control" rows="8" name="q" >{{ vlue }}</textarea>
+                </div>
+             <div style="height: 60px">
+        <div class="btn-group">
+                <button type="submit" class="btn btn-default" name="youdao">有道</button>
+                <button type="submit" class="btn btn-default" name="baidu" >百度</button>
+                <button type="submit" class="btn btn-default" name="google" >谷歌</button>
+                <button type="submit" class="btn btn-default" name="jinshan" >金山</button>
+                <button type="submit" class="btn btn-default" name="other" >其他</button>
+                <button type="submit" class="btn btn-default" name="all" >全部</button>
+        </div>
+</div>
+        </form>
+
+</div>
+    <!-- 操作部分 -->
+
+    <!-- 输出部分 -->
+<div>
+<div style="">
+        <form role="form" >
+                <div class="form-group">
+                  <textarea class="form-control" rows="8" readonly="readonly">{{ rlt }}</textarea>
+                </div>
+        </form>
+
+</div>
+
+</div>
+</div>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
