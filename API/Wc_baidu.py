@@ -59,10 +59,10 @@ class baidu_translate():
         # print(xxx)
         str_type = json.loads(response.content.decode())['query']
 
-        if u'\u4e00' <= str_type[3] <= u'\u9fff':
-            return 'zn'
-        else:
-            return 'en'
+        for ch in str_type.encode('utf-8').decode('utf-8'):
+            if u'\u4e00' <= ch <= u'\u9fff':
+                return 'zn'
+        return  'en'
     def get_result_type(self, str_type):
         """判断翻译的文字类型"""
         # 中译英
