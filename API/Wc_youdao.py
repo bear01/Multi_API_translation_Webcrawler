@@ -4,10 +4,10 @@ import time
 import random
 import hashlib
 import json
-from bs4 import BeautifulSoup
-from colorama import init,Fore
+# from bs4 import BeautifulSoup
+# from colorama import init,Fore
 
-def youdao(content):
+def youdao(content,language):
     # 解决反爬机制
     u = 'fanyideskweb'
     d = content

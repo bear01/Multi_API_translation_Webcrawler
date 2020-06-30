@@ -1,7 +1,7 @@
 import json
 import re
 import execjs
-import js2py
+# import js2py
 import requests
 
 
@@ -106,6 +106,6 @@ class baidu_translate():
         return (ret)
 
 
-def baidu(content):
+def baidu(content,a):
     trans = baidu_translate()
-    return trans.translate(content)
+    return trans.translate(content,a)

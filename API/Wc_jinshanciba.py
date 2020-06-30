@@ -2,7 +2,7 @@
 import urllib.request
 import urllib.parse
 from bs4 import BeautifulSoup
-from colorama import init,Fore
+# from colorama import init,Fore
 
 def jinshan(content):
     url1 = 'http://fy.iciba.com/?trans='
