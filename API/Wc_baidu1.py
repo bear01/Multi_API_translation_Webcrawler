@@ -118,15 +118,19 @@ class Baidu(object):
         return data
 
     def translate(self, from_lan, to_lan, text):
-        self.data = self.get_data(from_lan, to_lan, text)
-        s = requests.session()
-        response = requests.post(self.url, headers=self.header, data=self.data)
-        return response.json()['trans_result']['data'][0]['dst']
+        try:
+            self.data = self.get_data(from_lan, to_lan, text)
+            s = requests.session()
+            response = requests.post(self.url, headers=self.header, data=self.data)
+            return response.json()['trans_result']['data'][0]['dst']
+        except:
+            return '程序出现了一点小问题，无法翻译'
 
 
-def baidu(text,language):
+def baidu(text,lan):
     bd = Baidu()
-    if(language == 'zh'):
-        return bd.translate('zh', 'en', text)
+    if(lan=='en'):
+        return (bd.translate('en', 'zh', text))
     else:
-        return bd.translate('en', 'zh', text)
+        return bd.translate('zh','en',text)
+

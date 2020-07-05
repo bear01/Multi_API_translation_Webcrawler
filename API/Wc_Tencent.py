@@ -86,7 +86,7 @@ class TencentTrans(object):
 
         trans_result = getHtml(self.api_url,self.headers,data)
         return trans_result
-def tencent(text,language):
+def tencent(text):
     T = TencentTrans()
-    # print(T.get_trans_result(text))
+    print(T.get_trans_result(text))
     return T.get_trans_result(text)

@@ -7,7 +7,7 @@ import json
 # from bs4 import BeautifulSoup
 # from colorama import init,Fore
 
-def youdao(content,language):
+def youdao(content):
     # 解决反爬机制
     u = 'fanyideskweb'
     d = content

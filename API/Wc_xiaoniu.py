@@ -6,23 +6,27 @@ class Xiaoniu(object):
     def __init__(self):
 
         self.headers={
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Origin': 'https://niutrans.vip',
-        'Referer': 'https://niutrans.vip/console/textTrans',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80 Safari/537.36'
+        'Accept': 'application / json, text / plain, * / *',
+        'Accept - Encoding': 'gzip, deflate, br',
+        'Accept - Language': 'zh - CN,zh;q = 0.9,en;q = 0.8',
+        'Connection': 'keep - alive',
+        'Host': 'test.niutrans.com',
+        'Origin': 'https: // niutrans.com',
+        'Referer': 'https: // niutrans.com / Trans',
+        'Sec - Fetch - Mode': 'cors',
+        'Sec - Fetch - Site': 'same - site',
+        'User - Agent': 'Mozilla / 5.0(WindowsNT 10.0;Win64;x64) AppleWebKit / 537.36(KHTML, likeGecko) Chrome / 79.0.3945.117Safari / 537.36'
         }
-
         self.url = 'https://test.niutrans.vip/NiuTransServer/testtrans'
 
     def translate(self, from_lan, to_lan, text):
         data = {
             'from' : from_lan,
-            'to' : to_lan,
-            'src_text': text
+            'src_text': text,
+            'to' : to_lan
         }
         url = self.url
-        url+='?from=zh&to=en&src_text='
+        url+='?from='+from_lan+'&to='+to_lan+'&src_text='
         url+=urllib.parse.quote(data['src_text'])
         #print(url)
         result = requests.get(url=url,headers=self.headers)
@@ -31,7 +35,9 @@ class Xiaoniu(object):
             return result.json()['tgt_text']
 
 
-if __name__ == '__main__':
+def xiaoniu(text,len):
         niu = Xiaoniu()
-        text = '世界'
-        print(niu.translate('zh','en',text))
+        if (len == 'zh'):
+            return (niu.translate('zh','en',text))
+        if (len == 'en'):
+            return (niu.translate('en','zh',text))

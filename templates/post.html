@@ -1,6 +1,31 @@
 <html>
 <head>
 <title>bear翻译官</title>
+    <!-- 页面样式 -->
+ <style type="text/css">
+    .textarea{
+        width: 100%;
+        min-height: 300px;
+        max-height: 800px;
+        _height: 120px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 3px;
+        outline: 0;
+        border: 1px solid #a0b3d6;
+        font-size: 17px;
+        line-height: 24px;
+        text-align: left;
+        padding: 2px;
+        word-wrap: break-word;
+        overflow-x: hidden;
+        overflow-y: auto;
+        float:left;
+
+        border-color: rgba(82, 168, 236, 0.8);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+}
+    </style>
 <!-- 引入 Bootstrap -->
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -14,24 +39,8 @@
 <body>
     <!-- 导航栏 -->
 <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-        <a class="navbar-brand" href="#">BEAR翻译官</a>
-        </div>
-{#        <ul class="nav navbar-nav navbar-right">#}
-{#        <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">about#}
-{#                <span class="caret"></span></a>#}
-{#            <ul class="dropdown-menu">#}
-{#                <li>#}
-{#                    <a href="#">介绍</a></li>#}
-{#                <li>#}
-{#                    <a href="#">声明</a></li>#}
-{#                <li>#}
-{#                    <a href="#">源码</a></li>#}
-{#                <li class="divider"></li>#}
-{#                <li>#}
-{#                    <a href="#">作者</a></li></li>#}
-{#        </ul>#}
+    <div class="container-fluid" style="background-color: dodgerblue;padding-left: 10%">
+        <a class="navbar-brand" >结合有道、百度、谷歌、词霸、腾讯、小牛、微软等翻译网站的API实现的同步翻译</a>
     </div>
 </nav>
     <!-- 内容 -->
@@ -40,7 +49,7 @@
 <div style="">
         <form action="/search-post" method="post">
                 <div class="form-group">
-                  {% csrf_token %}<textarea class="form-control" rows="8" name="q" >{{ vlue }}</textarea>
+                  {% csrf_token %}<textarea class="form-control" rows="8" name="q" maxlength="500px">{{ vlue }}</textarea>
                 </div>
              <div style="height: 60px">
                  <!-- Single button -->
@@ -57,22 +66,22 @@
                         <button type="submit" class="btn btn-default" name="youdao">有道</button>
                         <button type="submit" class="btn btn-default" name="baidu" >百度</button>
                         <button type="submit" class="btn btn-default" name="google" >谷歌</button>
+                        <button type="submit" class="btn btn-default" name="ciba" >词霸</button>
                         <button type="submit" class="btn btn-default" name="tencent" >腾讯</button>
-                        <button type="submit" class="btn btn-default" name="other" >其他</button>
+                        <button type="submit" class="btn btn-default" name="xiaoniu" >小牛</button>
+                        <button type="submit" class="btn btn-default" name="bing" >微软</button>
                         <button type="submit" class="btn btn-default" name="all" >全部</button>
                 </div>
              </div>
         </form>
 
 </div>
-    <!-- 操作部分 -->
-
     <!-- 输出部分 -->
 <div>
 <div style="">
         <form role="form" >
                 <div class="form-group">
-                  <textarea class="form-control" rows="8" readonly="readonly">{{ rlt }}</textarea>
+                  <textarea class="form-control" rows="8" autoHeight="true" readonly="readonly" style="font-size:20px" >{{ rlt }}</textarea>
                 </div>
         </form>
 
@@ -98,5 +107,21 @@ $('input:radio').click(function(){
 		isDefualtAdd = 1;
 	}
 });
+$(function(){
+        $.fn.autoHeight = function(){
+        function autoHeight(elem){
+            elem.style.height = 'auto';
+            elem.scrollTop = 0; //防抖动
+            elem.style.height = elem.scrollHeight + 'px';
+        }
+        this.each(function(){
+            autoHeight(this);
+            $(this).on('keyup', function(){
+                autoHeight(this);
+            });
+        });
+    }
+    $('textarea[autoHeight]').autoHeight();
+})
 </script>
 </html>
